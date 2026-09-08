@@ -4,8 +4,13 @@
 #include <iostream>
 using namespace std;
 
+double AIR;
+
 int main()
 {
-    
+    cout << "Please enter the annual interest rate as a percentage (e.g., 15 for 15%) (enter 0 to quit): " << endl;
+    cin >> AIR;
+    AIR = AIR / 100;
+    cout << AIR;
 }
 
