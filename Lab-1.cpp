@@ -4,13 +4,12 @@
 #include <iostream>
 using namespace std;
 
-double AIR;
-int loan_amount;
-int loan_period;
-
-
 int main()
 {
+    double AIR;
+    double loan_amount;
+    int loan_period;
+
     cout << "Please enter the annual interest rate as a percentage (e.g., 15 for 15%) (enter 0 to quit): " << endl;
     cin >> AIR;
     AIR /= 100;
@@ -21,14 +20,12 @@ int main()
     cout << "Please enter loan period in months:" << endl;
     cin >> loan_period;
 
+    double years = loan_period / 12;
 
-    double total_interest = loan_amount * AIR * (loan_period / 12);
-    double total_amount = loan_amount + total_interest;
-    double monthly_amount = total_amount / loan_period;
+    double FVI = loan_amount / (1 - AIR * years);
+    double monthly_amount = FVI / loan_period;
 
-    cout << "the total amount of your loan (including interest at 15% per annum) is $" << total_amount << endl;
+    cout << "the total amount of your loan (including interest at 15% per annum) is $" << FVI << endl;
     cout << "Your monthly payment for 12 months will be $" << monthly_amount << endl;
 
-  
 }
-
