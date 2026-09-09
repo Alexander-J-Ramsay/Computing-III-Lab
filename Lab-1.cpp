@@ -10,14 +10,14 @@ int main()
     double loan_amount;
     int loan_period;
 
-    cout << "Please enter the annual interest rate as a percentage (e.g., 15 for 15%) (enter 0 to quit): " << endl;
+    cout << "Please enter the annual interest rate as a percentage (e.g., 15 for 15%) (enter 0 to quit): " ;
     cin >> AIR;
     AIR /= 100;
 
-    cout << "Please enter the amount you would like to receive: " << endl;
+    cout << "Please enter the amount you would like to receive: ";
     cin >> loan_amount;
 
-    cout << "Please enter loan period in months:" << endl;
+    cout << "Please enter loan period in months:";
     cin >> loan_period;
 
     double years = loan_period / 12;
