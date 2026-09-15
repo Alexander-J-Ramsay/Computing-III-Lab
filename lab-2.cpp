@@ -1,13 +1,13 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <limits>
 using namespace std;
-//Faizan made the output function, Aiden made the input function, Mason made the covnersion function, and ALex made the driver fixed a few bugs.
-
+//Faizan made the output function, Aiden made the input function, Mason made the conversion function and input verification, and ALex made the driver fixed a few bugs.
 
 void conversion_output(int pounds, int kilograms, double ounces, double grams);
-void conversion(int pounds, int &kilograms, double ounces, double &grams);
-void getInput(int &pounds, double &ounces); // Get user input for pounds and ounces
+void conversion(int pounds, int& kilograms, double ounces, double& grams);
+void getInput(int& pounds, double& ounces); // Get user input for pounds and ounces
 void calculation(double ounces, double pounds, double& kilograms, double& grams);
 
 int main()
@@ -22,22 +22,31 @@ int main()
 	return 0;
 }
 
-void getInput(int &pounds, double &ounces)
+void getInput(int& pounds, double& ounces)
 {
-    cout << "Please enter the number of pounds: ";
-    cin >> pounds;
-    cout << "Please enter the number of ounces: ";
-    cin >> ounces;
+	while (cout << "Please enter the number of pounds: " && (!(cin >> pounds) || pounds < 0))
+	{
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Thats not a number greater than or equal to 0! Please try again..." << endl;
+	}
+
+	while (cout << "Please enter the number of ounces: " && (!(cin >> ounces) || ounces < 0 || ounces >= 16))
+	{
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "That's not a number greater than or equal to 0, and less than 16! Please try again..." << endl;
+	}
 }
 
 void calculation(double ounces, double pounds, double& kilograms, double& grams)
 {
-    double pounds_Combined = pounds + (ounces / 16);
+	double pounds_Combined = pounds + (ounces / 16);
 
-    double total_kilograms = pounds_Combined * 0.45359237;
-    kilograms = static_cast<int>(floor(total_kilograms));
+	double total_kilograms = pounds_Combined * 0.45359237;
+	kilograms = static_cast<int>(floor(total_kilograms));
 
-    grams = (total_kilograms - kilograms) * 1000;
+	grams = (total_kilograms - kilograms) * 1000;
 }
 
 void conversion_output(int pounds, int kilograms, double ounces, double grams)
@@ -57,6 +66,4 @@ void conversion(int pounds, int& kilograms, double ounces, double& grams)
 	double combined_kg = combined_pounds * 0.45359237;
 	kilograms = floor(combined_kg);
 	grams = (combined_kg - kilograms) * 1000;
-
 }
-
