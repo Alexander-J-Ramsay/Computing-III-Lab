@@ -2,6 +2,8 @@
 #include <cmath>
 #include <iomanip>
 using namespace std;
+//Faizan made the output function, Aiden made the input function, Mason made the covnersion function, and ALex made the driver fixed a few bugs.
+
 
 void conversion_output(int pounds, int kilograms, double ounces, double grams);
 void conversion(int pounds, int &kilograms, double ounces, double &grams);
@@ -10,11 +12,16 @@ void calculation(double ounces, double pounds, double& kilograms, double& grams)
 
 int main()
 {
-    int pounds;
-    double ounces;
-    getInput(pounds, ounces);
-    
+	int pounds;
+	double ounces, g = 0;
+	int kg = 0;
+	getInput(pounds, ounces);
+	conversion(pounds, kg, ounces, g);
+	conversion_output(pounds, kg, ounces, g);
+
+	return 0;
 }
+
 void getInput(int &pounds, double &ounces)
 {
     cout << "Please enter the number of pounds: ";
