@@ -1,5 +1,6 @@
 #include <iostream>
-#include <cmath> //cmath for the rounding.
+#include <cmath> //for rounding.
+//Mason incorperated rounding and created the main loop, Alex created the initial main structure/interface, Aidan fixed errors, Faizan incorperated/solved the loan math 
 
 using namespace std;
 
