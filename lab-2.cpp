@@ -3,7 +3,9 @@
 #include <iomanip>
 #include <limits>
 using namespace std;
-//Faizan made the output function, Aiden made the input function, Mason made the conversion function and input verification, and ALex made the driver fixed a few bugs.
+/*Faizan made the output function, Aiden made the input function, Mason and Alex both made 
+conversion functions (Mason void conversion, Alex void calculation) due to miscommunication, 
+Mason made the input verification, and Alex made the driver and fixed some bugs. */
 
 void conversion_output(int pounds, int kilograms, double ounces, double grams);
 void conversion(int pounds, int& kilograms, double ounces, double& grams);
