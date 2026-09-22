@@ -27,7 +27,7 @@ int main(void)
         cout << "Please enter loan period in months: ";
         cin >> loan_period;
 
-        years = loan_period / 12; //Convert months into years as a decimal value.
+        years = static_cast<double>loan_period / 12; //Convert months into years as a decimal value.
 
         //Calculate the overall loan total and monthly amount after interest rounding to the nearest cent.
         loan_total = round((loan_amount / (1 - interest * years)) * 100) / 100; 
