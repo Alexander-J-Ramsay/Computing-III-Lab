@@ -1,4 +1,4 @@
-// lab_3
+// lab_3 ajdgakgdij
 
 #include <iostream>
 #include <cmath>

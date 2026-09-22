@@ -14,6 +14,7 @@ foreach(src ${LAB_SOURCES})
     # Target names can't contain spaces or hyphens.
     string(REPLACE " " "_" target_name ${lab_name})
     string(REPLACE "-" "_" target_name ${target_name})
+    
 
     add_executable(${target_name} ${src})
 
