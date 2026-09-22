@@ -16,4 +16,9 @@ foreach(src ${LAB_SOURCES})
     string(REPLACE "-" "_" target_name ${target_name})
 
     add_executable(${target_name} ${src})
+
+    # Run with the repo folder as the working directory, so a program can
+    # open "input.txt" by plain name without any path.
+    set_target_properties(${target_name} PROPERTIES
+        VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
 endforeach()
