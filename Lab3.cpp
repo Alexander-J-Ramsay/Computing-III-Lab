@@ -2,35 +2,37 @@
 
 using namespace std;
 
-void runConversions(double drams);
+void runConversions(const double drams);
+int inputVerify(double& inputMass, const string& text);
 
 int main(void)
 {
-
 	int inputSelection = -1;
 	double inputMass;
-	double drams;
+	double drams = 0;
 
 	while (inputSelection != 0)
 	{
-		cout << "Please enter 1 to use Avoirdupois pounds, 2 to use Troy pounds, 3 to use grams, or 0 to exit: ";
-		cin >> inputSelection;
+		while (cout << "Please enter 1 to use Avoirdupois pounds, 2 to use Troy pounds, 3 to use grams, or 0 to exit: "
+			&& (!(cin >> inputSelection) || inputSelection < 0 || inputSelection > 3))
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 		switch (inputSelection)
 		{
 		case 1:
-			cout << "Please enter a mass in Avoirdupois pounds: ";
-			cin >> inputMass;
+			inputVerify(inputMass, "Please enter a mass in Avoirdupois pounds: ");
 			drams = inputMass * 256.0;
 			break;
 		case 2:
-			cout << "Please enter a mass in Troy pounds: ";
-			cin >> inputMass;
+			inputVerify(inputMass, "Please enter a mass in Troy pounds: ");
 			drams = inputMass * 96.0;
 			break;
 		case 3:
-			cout << "Please enter a mass in grams: ";
-			cin >> inputMass;
+			inputVerify(inputMass, "Please enter a mass in grams: ");
 			drams = inputMass / 1.7718451953125;
 			break;
 		default:
@@ -48,4 +50,15 @@ void runConversions(double drams)
 	cout << "Mass in Avoirdupois pounds is: " << drams / 256 << endl;
 	cout << "Mass in Troy pounds is: " << drams / 96 << endl;
 	cout << "Mass in grams is: " << drams * 1.7718451953125 << "\n" << endl;
+}
+
+int inputVerify(double& inputMass, const string& text)
+{
+	while (cout << text && (!(cin >> inputMass) || (inputMass <= 0)))
+	{
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	}
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	return 1;
 }
