@@ -1,4 +1,5 @@
 // lab_3 
+//Alexander made the class and class functions, Mason made the input verification, Faizen made the Main function, and Aiden Also helped with input verification and Main function
 
 #include <iostream>
 #include <cmath>

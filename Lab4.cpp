@@ -104,3 +104,96 @@ ostream& operator<< (ostream& out, Month m) {
 
 
 // ***** Add your Date class definition and driver program below. *****
+class Date {
+	friend ostream& operator<<(ostream& out, Date d);
+
+public:
+	Date();
+	Date(int month, int day, int year);
+	Date(string month, int day, int year);
+
+	void setMonth(int month);
+	void outputDateAsInt(ostream& out);
+	void outputDateAsString(ostream& out);
+	Date& operator++();
+
+private:
+	Month _month;
+	int _day;
+	int _year;
+};
+
+Date::Date() {
+	_month.setMonth(1);
+	_day = 1;
+	_year = 2018;
+}
+
+Date::Date(int month, int day, int year) {
+	_month.setMonth(month);
+	_day = day;
+	_year = year;
+}
+
+Date::Date(string month, int day, int year) {
+	_month.setMonth(month);
+	_day = day;
+	_year = year;
+}
+
+void Date::setMonth(int month) {
+	_month.setMonth(month);
+}
+
+void Date::outputDateAsInt(ostream& out) {
+	out << _month.MonthToInt() << "/" << _day << "/" << _year;
+}
+
+void Date::outputDateAsString(ostream& out) {
+	out << _month.MonthToString() << " " << _day << ", " << _year;
+}
+
+Date& Date::operator++() {
+	_year++;
+	return *this;
+}
+
+ostream& operator<< (ostream& out, Date d) {
+	out << d._month << " " << d._day << ", " << d._year;
+	return out;
+}
+
+int main() {
+	Date d1;
+	Date d2(2, 1, 2018);
+	Date d3("Mar", 1, 2018);
+
+	cout << "With the following declarations:" << endl;
+	cout << "     Date d1, d2(2, 1, 2018), d3(\"Mar\", 1, 2018);" << endl;
+	cout << "...and using operator<< :" << endl;
+	cout << "d1 == " << d1 << endl;
+	cout << "d2 == " << d2 << endl;
+	cout << "d3 == " << d3 << endl;
+	cout << endl;
+
+	d3.setMonth(4);
+	cout << "After d3.setMonth(4):" << endl;
+	cout << "d3 == " << d3 << endl;
+	cout << endl;
+
+	Date d4(12, 31, 2018);
+	cout << "With the following declaration:" << endl;
+	cout << "     Date d4(12, 31, 2018);" << endl;
+	cout << "d4.outputDateAsInt(cout) outputs ";
+	d4.outputDateAsInt(cout);
+	cout << endl;
+	cout << "d4.outputDateAsString(cout) outputs ";
+	d4.outputDateAsString(cout);
+	cout << endl;
+	cout << endl;
+
+	++d4;
+	cout << "++d4 == " << d4 << endl;
+
+	return 0;
+}
