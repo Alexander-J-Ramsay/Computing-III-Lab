@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//Alexander made the Date class and helped with class functions, Faizen and Aiden both worked on class functions and helped with the driver program, and Mason made most of the driver program (main)
 
 // ***** Add your Date class definition and driver program at the end of this file
 // (at about line 107). *****
