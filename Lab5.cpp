@@ -24,5 +24,17 @@ private:
 
 int main()
 {
-	cout << "hello world!" << endl;
+	vector<int> complexNumbers = { 0,1,2,3,4,5,6,7,8,9 };
+
+	cout << "Vector output using an indexed for-loop:" << endl;
+	for (int n = 0; n < 10; n++)
+	{
+		cout << n << "+" << n * 2 << "i" << endl;
+	}
+	cout << "Vector output using an iterator in for-loop:" << endl;
+	
+	for (vector<int>::iterator iterator = complexNumbers.begin(); iterator != complexNumbers.end(); iterator++)
+	{
+		cout << *iterator << "+" << *iterator * 2 << "i" << endl;
+	}
 }
