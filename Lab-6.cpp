@@ -88,12 +88,25 @@ BSTNode<T>& BSTNode<T>::operator= (BSTNode& b) {
 
 template<typename T>
 void BSTNode<T>::insert(const T& data) {
-	// comment out the next line when you've completed this function!
-	cout << "BSTNode<T>::insert called with data == " << data << endl;
-	
-	/**
-	 *  ***** Write me! *****
-	 */
+    if (data == _data) {
+        return;
+    }
+    if (data < _data) {
+        if (_left == nullptr) {
+            addLeft(data);
+        }
+        else {
+            _left->insert(data);
+        }
+    }
+    else {
+        if (_right == nullptr) {
+            addRight(data);
+        }
+        else {
+            _right->insert(data);
+        }
+    }
 }
 
 
