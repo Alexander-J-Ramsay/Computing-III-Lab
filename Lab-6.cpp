@@ -38,7 +38,7 @@ public:
 	// ***** Change the implementation of this insertion operator
 	// ***** in order to switch to pre- or post-order display
 	friend ostream& operator<< (ostream& out, const BSTNode<T>& b)
-		{ b.inOrderDisplay(out); return out; }
+		{ b.preOrderDisplay(out); return out; }
 	
 private:
 	T _data;
@@ -88,6 +88,7 @@ BSTNode<T>& BSTNode<T>::operator= (BSTNode& b) {
 
 template<typename T>
 void BSTNode<T>::insert(const T& data) {
+<<<<<<< Updated upstream
     if (data == _data) {
         return;
     }
@@ -107,6 +108,30 @@ void BSTNode<T>::insert(const T& data) {
             _right->insert(data);
         }
     }
+=======
+	// comment out the next line when you've completed this function!
+	//cout << "BSTNode<T>::insert called with data == " << data << endl;
+
+	if (data == _data) {
+		return;
+	}
+	if (data < _data) {
+		if (_left == nullptr) {
+			addLeft(data);
+		}
+		else {
+			_left->insert(data);
+		}
+	}
+	else {
+		if (_right == nullptr) {
+			addRight(data);
+		}
+		else {
+			_right->insert(data);
+		}
+	}
+>>>>>>> Stashed changes
 }
 
 
@@ -131,7 +156,11 @@ template<typename T>
 void BSTNode<T>::preOrderDisplay(ostream& out) const {
 	// comment out the next line when you've completed this function!
 	//cout << "BSTNode<T>::preOrderDisplay called\n";
+<<<<<<< Updated upstream
 	
+=======
+
+>>>>>>> Stashed changes
 	out << _data;
 
 	if (_left != nullptr) {
@@ -149,6 +178,7 @@ template<typename T>
 void BSTNode<T>::postOrderDisplay(ostream& out) const {
 	// comment out the next line when you've completed this function!
 	//cout << "BSTNode<T>::postOrderDisplay called\n";
+<<<<<<< Updated upstream
 	
 	if (_left != nullptr) {
 		_left->postOrderDisplay(out);
@@ -161,6 +191,21 @@ void BSTNode<T>::postOrderDisplay(ostream& out) const {
 	}
 
 	out << _data;
+=======
+
+	if (_left != nullptr) {
+		_left->postOrderDisplay(out);
+		out << ", ";
+	}
+
+	if (_right != nullptr) {
+		_right->postOrderDisplay(out);
+		out << ", ";
+	}
+
+	out << _data;
+	
+>>>>>>> Stashed changes
 }
 
 

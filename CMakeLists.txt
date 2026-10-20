@@ -16,7 +16,8 @@ foreach(src ${LAB_SOURCES})
     string(REPLACE "-" "_" target_name ${target_name})
     
 
-    add_executable(${target_name} ${src} "Lab5.cpp")
+    #add_executable(${target_name} ${src} "Lab5.cpp")
+    add_executable(${target_name} ${src} "Lab-6.cpp")
 
     # Run with the repo folder as the working directory, so a program can
     # open "input.txt" by plain name without any path.
