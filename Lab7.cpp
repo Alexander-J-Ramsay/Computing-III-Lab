@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <string>
+#include <list>
+#include <map>
 
 using namespace std;
 
@@ -20,6 +22,9 @@ public:
 	// ***** Your group will define/implement the insert function
 	// ***** at about line 89 below...
 	void insert(const T& data);
+
+	//lab 7 listify
+	void listify(list<T>&) const;
 
 	// Accessor and mutator functions
 	BSTNode<T>* getLeft() const { return _left; }
@@ -41,6 +46,8 @@ public:
 	{
 		b.inOrderDisplay(out); return out;
 	}
+
+	
 
 private:
 	T _data;
@@ -113,6 +120,19 @@ void BSTNode<T>::insert(const T& data) {
 
 
 template<typename T>
+void BSTNode<T>::listify(list<T>& lst) const
+{
+	if (_left != nullptr) {
+		_left->listify(lst);
+	}
+	lst.push_back(_data);
+	if (_right != nullptr) {
+		_right->listify(lst);
+	}
+}
+
+
+template<typename T>
 void BSTNode<T>::inOrderDisplay(ostream& out) const {
 	if (_left != nullptr) {
 		_left->inOrderDisplay(out);
@@ -165,6 +185,32 @@ void BSTNode<T>::postOrderDisplay(ostream& out) const {
 	out << _data;
 }
 
+template<typename T> 
+void showList(const string& name, const list<T>& lst)
+{
+	cout << name << " forward iterator = ";
+	for (auto it = lst.begin(); it != lst.end(); ++it)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+
+	cout << name << " reverse iterator = ";
+	for (auto it = lst.rbegin(); it != lst.rend(); ++it)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+
+	cout << name << " ranged for loop = ";
+	for (const T& x : lst)
+	{
+		cout << x << " ";
+	}
+	cout << endl;
+}
+
+
 
 int main(void) {
 	BSTNode<int> iroot(100);
@@ -183,6 +229,36 @@ int main(void) {
 	sroot.insert("Saturday");
 	cout << "sroot == " << sroot << endl;
 
+	cout << endl;
+
+	// steps 1-2
+	cout << "creating irootList via iroot.listify" << endl;
+	list<int> irootList;
+	iroot.listify(irootList);
+	showList("irootList", irootList);
+	cout << endl;
+
+	//step 3
+	cout << "creating srootList via sroot.listify" << endl;
+	list<string> srootList;
+	sroot.listify(srootList);
+	showList("srootList", srootList);
+	cout << endl;
+
+	//step 4
+	BSTNode<int> iroot4(1000);
+	iroot4.insert(2000);
+	iroot4.insert(3000);
+	iroot4.insert(4000);
+	iroot4.insert(5000);
+	cout << "iroot4 == " << iroot4 << endl;
+
+	//step 5
+	cout << "creating irootList4 via iroot4.listify" << endl;
+	list<int> irootList4;
+	iroot4.listify(irootList4);
+	cout << endl;
+
 #ifdef debug	
 	BSTNode<int> iroot2(iroot); // use copy constructor
 	cout << "\nAfter copy constructor:\n";
@@ -192,6 +268,8 @@ int main(void) {
 	iroot3 = iroot2; // use copy assignment operator
 	cout << "\nAfter copy assignment operator:\n";
 	cout << "iroot3 == " << iroot3 << endl << endl;
+
+	
 #endif
 
 	return 0;
