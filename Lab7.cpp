@@ -207,6 +207,18 @@ int main(void) {
 	cout << "\n" << endl;
 	cout << "Creating iroot4List via iroot4.listify\n" << endl;
 
+	cout << "Contents of map<string, list<int>> mi (using ranged for loops):" << endl;
+	cout << "iroot4List: ";
+	//display using ranged for loop
+	cout << "\nirootList: ";
+	//display using ranged for loop then newline
+	cout << "\n" << endl;
+
+	cout << "Using map index operator:" << endl;
+	cout << "mi[\"irootList\"] == ";
+	//display irootlist using map index operator
+	cout << "\nmi[\"iroot4List\"] == ";
+	//display iroot4list using map index operator
 
 #ifdef debug	
 	BSTNode<int> iroot2(iroot); // use copy constructor
