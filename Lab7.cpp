@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <string>
+#include <map>
+#include <list>
 
 using namespace std;
 
@@ -185,6 +187,9 @@ int main(void) {
 
 
 	cout << "\nCreating irootList via iroot.listify\n" << endl;
+	list<int> irootList;
+	iroot.listify(irootList);
+
 	cout << "irootList (forward iterator) == ";
 	//display forward iterator
 	cout << "\nirootList (reverse iterator) == ";
@@ -194,6 +199,9 @@ int main(void) {
 	cout << "\n" << endl;
 
 	cout << "Creating srootList via sroot.listify\n" << endl;
+	list<string> srootList;
+	sroot.listify(srootList);
+
 	cout << "srootList (forward iterator) == ";
 	//display forward iterator
 	cout << "\nsrootList (reverse iterator) == ";
@@ -202,10 +210,23 @@ int main(void) {
 	//display ranged for loop then newline
 	cout << "\n" << endl;
 
+	BSTNode<int> iroot4(1000);
+	iroot.insert(2000);
+	iroot.insert(3000);
+	iroot.insert(4000);
+	iroot.insert(5000);
+
 	cout << "iroot4 == ";
 	//display iroot4 then newline
 	cout << "\n" << endl;
 	cout << "Creating iroot4List via iroot4.listify\n" << endl;
+	list<int> iroot4List;
+	iroot4.listify(iroot4List);
+
+	map<string, list<int>> mi = {
+		{ "irootList", iroot },
+		{ "iroot4List", iroot4 }
+	};
 
 	cout << "Contents of map<string, list<int>> mi (using ranged for loops):" << endl;
 	cout << "iroot4List: ";
