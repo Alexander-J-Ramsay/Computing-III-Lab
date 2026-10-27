@@ -184,21 +184,21 @@ int main(void) {
 	cout << "sroot == " << sroot << endl;
 
 
-	cout << "Creating irootList via iroot.listify\n" << endl;
+	cout << "\nCreating irootList via iroot.listify\n" << endl;
 	cout << "irootList (forward iterator) == ";
 	//display forward iterator
-	cout << "irootList (reverse iterator) == ";
+	cout << "\nirootList (reverse iterator) == ";
 	//display reverse iterator
-	cout << "irootList (ranged for loop) == ";
+	cout << "\nirootList (ranged for loop) == ";
 	//display ranged for loop then newline
 	cout << "\n" << endl;
 
 	cout << "Creating srootList via sroot.listify\n" << endl;
 	cout << "srootList (forward iterator) == ";
 	//display forward iterator
-	cout << "srootList (reverse iterator) == ";
+	cout << "\nsrootList (reverse iterator) == ";
 	//display reverse iterator
-	cout << "srootList (ranged for loop) == ";
+	cout << "\nsrootList (ranged for loop) == ";
 	//display ranged for loop then newline
 	cout << "\n" << endl;
 
@@ -206,7 +206,6 @@ int main(void) {
 	//display iroot4 then newline
 	cout << "\n" << endl;
 	cout << "Creating iroot4List via iroot4.listify\n" << endl;
-
 
 
 #ifdef debug	
