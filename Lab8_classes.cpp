@@ -4,15 +4,12 @@ class PartTime : public EmployeeKind
 	public:
 	 PartTime();
 	 PartTime(unsigned hours);
-	 PartTime(EmployeeKind kind, unsigned hours);
 	 int get_hours();
 }
 
-PartTime::PartTime() : EmployeeKind(), _maxHours(0)
+PartTime::PartTime() : _maxHours(0)
 {}
-PartTime::PartTime(unsigned hours) : EmployeeKind(), _maxHours(hours)
-{}
-PartTime(EmployeeKind kind, unsigned hours) : EmployeeKind(kind), _maxHours(hours)
+PartTime::PartTime(unsigned hours) : _maxHours(hours)
 {}
 int PartTime::get_hours()
 {
