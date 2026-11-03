@@ -1,3 +1,10 @@
+class EmployeeKind {
+	public:
+		void output(ostream& out) const { out << *this; }
+
+	friend ostream& operator<< (ostream&, const EmployeeKind&);
+};
+
 class PartTime : public EmployeeKind
 {
 	unsigned _maxHours;
