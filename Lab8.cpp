@@ -53,6 +53,19 @@ class Hourly : public PayKind { // derived class
 		unsigned _hourlyRate;
 };
 
+class EmployeeKind {
+	public:
+		void output(ostream& out) const { out << *this; }
+
+	friend ostream& operator<< (ostream&, const EmployeeKind&);
+};
+
+ostream& operator<< (ostream& out, const EmployeeKind& e) {
+    out << "EmployeeKind (no member variables)\n" << endl;
+
+    return out;
+}
+
 
 ostream& operator<< (ostream& out, const PayKind& p) {
     out << "Paykind (no member variables)\n" << endl;
