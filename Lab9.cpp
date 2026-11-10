@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 // using declarations
 using std::ostream;
 using std::cout;
 using std::endl;
 using std::string;
+using std::vector;
 
 
 class PayKind { // base class - no member variables
@@ -13,6 +15,8 @@ public:
 	void output(ostream& out) const { out << *this; }
 
 	friend ostream& operator<< (ostream&, const PayKind&);
+
+	virtual double payAdvice() const = 0;
 };
 
 
@@ -29,6 +33,10 @@ public:
 	void output(ostream& out) const { out << *this; }
 
 	friend ostream& operator<< (ostream&, const Salaried&);
+
+	double payAdvice() const override {
+		return _annualSalary / 26.0;
+	}
 
 private:
 	unsigned _annualSalary;
@@ -48,6 +56,10 @@ public:
 	void output(ostream& out) const { out << *this; }
 
 	friend ostream& operator<< (ostream&, const Hourly&);
+
+	double payAdvice() const override {
+		return _hourlyRate * 40.0;
+	}
 
 private:
 	unsigned _hourlyRate;
@@ -90,6 +102,10 @@ public:
 	void setFeePerCourse(unsigned iFee);
 	void output(ostream& out) const { out << *this; }
 	friend ostream& operator<< (ostream&, const PerCourse&);
+
+	double payAdvice() const override {
+		return _feePerCourse / 7.0;
+	}
 };
 
 PerCourse::PerCourse() : _feePerCourse(0)
@@ -555,6 +571,29 @@ int main(void) {
 	Adjunct a1("Jane", "Roe", "12 Merrimack Street", 61234567, "987-65-4321", "Computer Science",
 		3000, 19, 2);
 	cout << "Adjunct Faculty a1(Jane...):\n" << a1 << endl;
+
+	// lab 9
+	cout << "g1 payAdvice: " << g1.payAdvice() << endl;
+	cout << "n1 payAdvice: " << n1.payAdvice() << endl;
+	cout << "Adjunct PayAdvice: " << a1.payAdvice() << endl;
+	cout << endl;
+
+	
+	vector<NTT*> nv;
+	nv.push_back(&n1);
+	cout << 0 << ":\n" << *nv[0];
+	cout << "Pay Advice is " << nv[0]->payAdvice() << endl << endl;
+
+	vector<UMLPerson*> uv;
+	uv.push_back(&s1);
+	uv.push_back(&s2);
+	uv.push_back(&g1);
+	uv.push_back(&n1);
+	for (int i = 0; i < 4; i++) {
+		cout << i << ":\n" << *uv[i] << endl;
+	}
+	cout << endl;
+	
 
 	return 0;
 }
