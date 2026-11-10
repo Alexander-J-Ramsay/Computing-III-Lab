@@ -1,3 +1,5 @@
+// Mason made adjunct, alex made percourse, faizan made employeekind, aidan made parttime 
+
 #include <iostream>
 #include <string>
 
