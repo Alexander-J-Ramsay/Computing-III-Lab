@@ -9,53 +9,62 @@ using std::string;
 
 
 class PayKind { // base class - no member variables
-public:
-	void output(ostream& out) const { out << *this; }
-
+	public:
+		void output(ostream& out) const { out << *this; }
+		virtual double payAdvice() const = 0;
+				
 	friend ostream& operator<< (ostream&, const PayKind&);
 };
 
 
 class Salaried : public PayKind { // derived class
-public:
-	// constructors/destructor
-	Salaried() : _annualSalary(0) {}
-	Salaried(unsigned salary) : _annualSalary(salary) {}
-	~Salaried() { cout << "Salaried destructor called\n"; }
-
-	// accessor functions
-	unsigned getSalary() const { return _annualSalary; }
-
-	void output(ostream& out) const { out << *this; }
-
+	public:
+		// constructors/destructor
+	    Salaried() : _annualSalary(0) {}	    
+	    Salaried(unsigned salary) : _annualSalary(salary) {}
+		~Salaried() { cout << "Salaried destructor called\n"; }
+	
+		// accessor functions
+		unsigned getSalary() const { return _annualSalary; }
+		
+		void output(ostream& out) const { out << *this; }
+				
+		double payAdvice() const
+		{
+			return _annualSalary / 26.0;
+		}
 	friend ostream& operator<< (ostream&, const Salaried&);
-
-private:
-	unsigned _annualSalary;
+	
+	private:
+		unsigned _annualSalary;
 };
 
 
 class Hourly : public PayKind { // derived class
-public:
-	// constructors/destructor
-	Hourly() : _hourlyRate(0) {}
-	Hourly(unsigned hourlyRate) : _hourlyRate(hourlyRate) {}
-	~Hourly() { cout << "Hourly destructor called\n"; }
-
-	// accessor functions
-	unsigned getHourlyRate() const { return _hourlyRate; }
-
-	void output(ostream& out) const { out << *this; }
-
+	public:
+		// constructors/destructor
+	    Hourly() : _hourlyRate(0) {}
+	    Hourly(unsigned hourlyRate) : _hourlyRate(hourlyRate) {}
+		~Hourly() { cout << "Hourly destructor called\n"; }
+	
+		// accessor functions
+		unsigned getHourlyRate() const { return _hourlyRate; }
+		
+		void output(ostream& out) const { out << *this; }
+				
+		double payAdvice() const
+		{
+			return _hourlyRate * 40.0;
+		}
 	friend ostream& operator<< (ostream&, const Hourly&);
-
-private:
-	unsigned _hourlyRate;
+	
+	private:
+		unsigned _hourlyRate;
 };
 
 class EmployeeKind {
-public:
-	void output(ostream& out) const { out << *this; }
+	public:
+		void output(ostream& out) const { out << *this; }
 
 	friend ostream& operator<< (ostream&, const EmployeeKind&);
 };
@@ -72,9 +81,11 @@ public:
 };
 
 PartTime::PartTime() : _maxHours(0)
-{}
+{
+}
 PartTime::PartTime(unsigned hours) : _maxHours(hours)
-{}
+{
+}
 unsigned PartTime::get_hours() const
 {
 	return _maxHours;
@@ -89,13 +100,16 @@ public:
 	unsigned getFeePerCourse() const;
 	void setFeePerCourse(unsigned iFee);
 	void output(ostream& out) const { out << *this; }
+	double payAdvice() const;
 	friend ostream& operator<< (ostream&, const PerCourse&);
 };
 
 PerCourse::PerCourse() : _feePerCourse(0)
-{}
+{
+}
 PerCourse::PerCourse(unsigned _feePerCourse) : _feePerCourse(_feePerCourse)
-{}
+{
+}
 unsigned PerCourse::getFeePerCourse() const
 {
 	return _feePerCourse;
@@ -105,6 +119,10 @@ void PerCourse::setFeePerCourse(unsigned iFee)
 	_feePerCourse = iFee;
 }
 
+double PerCourse::payAdvice() const
+{
+	return _feePerCourse / 7.0;
+}
 ostream& operator<< (ostream& out, const EmployeeKind& e) {
 	out << "EmployeeKind (no member variables)\n" << endl;
 
