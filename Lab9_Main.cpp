@@ -34,6 +34,21 @@ int main (void) {
 	cout << "Grader pay advice: " << g1.payKind() << endl;
 	cout << "NTT pay advice: " << n1.payKind() << endl;
 	cout << "Adjunct pay advice: " << a1.payKind() << endl;
+
+	vector<NTT*> nv;
+	nv.push_back(&n1);
+	cout << 0 << ":\n" << *nv[0];
+	cout << "Pay Advice is " << nv[0]->payAdvice() << endl << endl;
+	
+	vector<UMLPerson*> uv;
+	uv.push_back(&s1);
+	uv.push_back(&s2);
+	uv.push_back(&g1);
+	uv.push_back(&n1);
+	for (int i = 0; i < 4; i++) {
+		cout << i << ":\n" << *uv[i] << endl;
+	}
+	cout << endl;
 	
     return 0;
 }
