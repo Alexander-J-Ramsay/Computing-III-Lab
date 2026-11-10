@@ -19,7 +19,7 @@ class PayKind { // base class - no member variables
 class Salaried : public PayKind { // derived class
 	public:
 		// constructors/destructor
-	    Salaried() : _annualSalary(0) {}	    
+		Salaried() : _annualSalary(0) {}
 	    Salaried(unsigned salary) : _annualSalary(salary) {}
 		~Salaried() { cout << "Salaried destructor called\n"; }
 	
@@ -415,6 +415,31 @@ ostream& operator<< (ostream& out, const NTT& n) {
 
     return out;
 }
+
+class PerCourse : public PayKind {
+public:
+
+private:
+	unsigned _feePerCourse;
+};
+
+class EmployeeKind {
+
+};
+
+class PartTime : public EmployeeKind {
+public:
+
+private:
+	unsigned _maxHours;
+};
+
+class Adjunct : public Faculty, public PerCourse, public PartTime {
+public:
+
+private:
+	unsigned _maxCourses;
+};
 
 
 int main (void) {
