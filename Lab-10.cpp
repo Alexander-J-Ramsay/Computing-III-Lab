@@ -67,15 +67,18 @@ int main()
 	
 
 	do {
-		try
-		{
-		
 		do{
 		    cout << "Please enter 1 to use Avoirdupois pounds, 2 to use Troy pounds, "
 			     << "3 to use grams, or 0 to exit: ";
 				 
-			choice = checkInput(0, 3, "That's not a number between 0 and 3!");
-			break;
+			try {
+				choice = checkInput(0, 3, "That's not a number between 0 and 3!");
+				break;
+			}
+			catch (inputException& e) {
+				cout << "EXCEPTION THROWN: " << e.what() << endl;
+			}
+
 			
 		} while (true);
 		
@@ -84,8 +87,14 @@ int main()
 				do {
 				    cout << "Please enter a mass in Avoirdupois pounds: ";
 				    
-				    inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
-				    break;
+					try {
+						inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
+						break;
+					}
+					catch (inputException& e) {
+						cout << "EXCEPTION THROWN: " << e.what() << endl;
+					}
+
 					
 		        } while (true);
 				m.setMassAvoirdupoisPounds( inputMass );
@@ -95,8 +104,14 @@ int main()
 				do {
 				    cout << "Please enter a mass in Troy pounds: ";
 				    
-				    inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
-				    break;
+					try {
+						inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
+						break;
+					}
+					catch (inputException& e) {
+						cout << "EXCEPTION THROWN: " << e.what() << endl;
+					}
+
 			        
 		        } while (true);
 				m.setMassTroyPounds( inputMass );
@@ -106,8 +121,14 @@ int main()
 				do {
 				    cout << "Please enter a mass in grams: ";
 				    
-				    inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
-				    break;
+					try {
+						inputMass = checkInput(0.0, MAX_DOUBLE, "That's not a positive number!");
+						break;
+					}
+					catch (inputException& e) {
+						cout << "EXCEPTION THROWN: " << e.what() << endl;
+					}
+
  
 		        } while (true);
 				m.setMassMetricGrams( inputMass );
@@ -122,15 +143,7 @@ int main()
 		cout << "Mass in Avoirdupois pounds is " << m.getMassAvoirdupoisPounds() << endl;
 		cout << "Mass in Troy pounds is " << m.getMassTroyPounds() << endl;
 		cout << "Mass in grams is " << m.getMassMetricGrams() << endl << endl;
-			}
-	catch(inputException err)
-	{
-		cerr << "EXCEPTION THROWN: " << err.what() << endl;
-	}
-	catch(...)
-	{
-		cerr << "Unknown Exception" << endl;
-	}
+			
 	} while (true);
 	return 0;
 }
