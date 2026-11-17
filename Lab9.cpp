@@ -1,3 +1,5 @@
+//mason added pay advice virtual function, alex overrode pay advice in the derived functions, 
+//faizan added display code in main, aidan added the gived code at the bottom of main
 #include <iostream>
 #include <string>
 #include <vector>
