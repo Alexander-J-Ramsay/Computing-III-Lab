@@ -2,12 +2,12 @@
 #include <iostream>
 #include <string>
 #include <limits>
-#include <exception>
+#include <stdexcept>
 using namespace std;
 
 const int IGNORE_SIZE = 256;
 const double MAX_DOUBLE = std::numeric_limits<double>::max();
-
+class inputException;
 
 /**
  *  Generic function to input a number, and check whether the number is within
@@ -20,13 +20,14 @@ template<typename T>
 T checkInput(T lower, T upper, string message)
 {
 	T in;
-
+	
 	if ( !(cin >> in) || (in < lower) || (in > upper) ) {
 		cin.clear();
 		cin.ignore(IGNORE_SIZE, '\n');
-		throw inputException( message );
+		inputException err = inputException(message);
+		throw err;
 	}
-
+	
 	return in;
 }
 
@@ -64,7 +65,11 @@ int main()
 	double inputMass;
 	Mass m;
 	
+
 	do {
+		try
+		{
+		
 		do{
 		    cout << "Please enter 1 to use Avoirdupois pounds, 2 to use Troy pounds, "
 			     << "3 to use grams, or 0 to exit: ";
@@ -117,8 +122,15 @@ int main()
 		cout << "Mass in Avoirdupois pounds is " << m.getMassAvoirdupoisPounds() << endl;
 		cout << "Mass in Troy pounds is " << m.getMassTroyPounds() << endl;
 		cout << "Mass in grams is " << m.getMassMetricGrams() << endl << endl;
-		
+			}
+	catch(inputException err)
+	{
+		cerr << "EXCEPTION THROWN: " << err.what() << endl;
+	}
+	catch(...)
+	{
+		cerr << "Unkown Exception" << endl;
+	}
 	} while (true);
-	
 	return 0;
 }
