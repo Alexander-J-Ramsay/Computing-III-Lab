@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <limits>
-
+#include <exception>
 using namespace std;
 
 const int IGNORE_SIZE = 256;
@@ -45,6 +45,17 @@ class Mass {
 		const double metricGramsPerDram = 1.7718451953125;
 };
 
+class inputException : public exception
+{
+	string err;
+ public:
+	inputException(string iErr) : err(iErr)
+	{}
+	virtual const char* what() const noexcept
+	{
+		return err.c_str();
+	}
+};
 
 int main()
 {
