@@ -20,12 +20,13 @@ template<typename T>
 T checkInput(T lower, T upper, string message)
 {
 	T in;
-	
+
 	if ( !(cin >> in) || (in < lower) || (in > upper) ) {
 		cin.clear();
 		cin.ignore(IGNORE_SIZE, '\n');
+		throw input_exception( message );
 	}
-	
+
 	return in;
 }
 
