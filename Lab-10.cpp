@@ -129,7 +129,7 @@ int main()
 	}
 	catch(...)
 	{
-		cerr << "Unkown Exception" << endl;
+		cerr << "Unknown Exception" << endl;
 	}
 	} while (true);
 	return 0;
